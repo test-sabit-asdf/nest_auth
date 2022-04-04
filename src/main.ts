@@ -12,7 +12,7 @@ async function bootstrap() {
   const secret = 'my-secret-key';
 
   const token = jwt.sign({ foo: 'bar' }, secret, { algorithm: 'none' });
-  jwt.verify(token, null, { algorithms: ['HS256', 'none'] });
+  jwt.verify(token, false, { algorithms: ['HS256', 'none'] });
 
   const app = await NestFactory.create(AppModule);
   app.enableCors();
