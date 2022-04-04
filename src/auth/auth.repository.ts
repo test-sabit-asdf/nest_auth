@@ -5,10 +5,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 @EntityRepository(Auth)
 export class AuthRepository extends Repository<Auth> {
   //create new user
-  public async createUser(
-    createUserDto: CreateUserDto,
-    salt: string,
-  ): Promise<Auth> {
+  public async createUser(createUserDto: CreateUserDto, salt: string): Promise<Auth> {
     const { name, email, password } = createUserDto;
 
     const user = new Auth();
