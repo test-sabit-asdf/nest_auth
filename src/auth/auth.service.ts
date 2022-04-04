@@ -5,7 +5,6 @@ import { isEqual } from 'lodash';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Auth } from './entity/auth.entity';
 import { AuthRepository } from './auth.repository';
-import jwt from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
@@ -19,10 +18,6 @@ export class AuthService {
   }
   //create new user
   async create(data: CreateUserDto): Promise<Auth> {
-    const secret = 'my-secret-key';
-
-    const token = jwt.sign({ foo: 'bar' }, secret, { algorithm: 'none' });
-    jwt.verify(token, '', { algorithms: ['HS256', 'none'] });
     //hash user password
     const salt = await genSalt();
     const hashPass = await this.hashPassword(data.password, salt);
